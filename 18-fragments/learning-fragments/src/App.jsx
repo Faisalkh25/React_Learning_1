@@ -1,28 +1,38 @@
 import Players from './components/Players';
 import ErrorMsg from './components/ErrorMsg';
+import PlayerInput from './components/PlayerInput';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   //  let players = [];
-   let players = ['Mo Salah', 'Ekitike', 'Van Dyk', 'Gakpo', 'Szobozlai', 'McAlister'];
+//    let players = ['Mo Salah', 'Ekitike', 'Van Dyk', 'Gakpo', 'Szobozlai', 'McAlister'];
 
-    //conditional rendering
-    //display content based on conditions
+// let [textCurrentValue, setStateMethod] = useState();
+  let [players, setPlayers] =  useState([]);
 
-    // if(players.length === 0) {
-    //      return <h3>No players available</h3>
-    // }
   
-  //  let playerMesg = (players.length === 0 ? <h3>No players available</h3> : null)
+ 
+//    let textToShow = "food item entered by the user";
 
+   const handleKeyDown = (dets) => {
+            if(dets.key === 'Enter') {
+               let newPlayer = dets.target.value;
+               dets.target.value = "";
+             let newPlayers = [...players, newPlayer];
+             setPlayers(newPlayers);
+            }
+       }
+
+     
   return (
     
-       <div className="container">
+       <div className="container custom-container">
            <div className="row">
                <div className="col-lg-12 col-md-12">
-                    <center>
+                    <center >
                          <h2>Liverpool Players</h2>
                     </center>
 
@@ -30,8 +40,11 @@ function App() {
 
                </div>
            </div>
-             <ErrorMsg items={players}></ErrorMsg>
+             
 
+             <PlayerInput handleKeyDown={handleKeyDown}></PlayerInput>
+             <ErrorMsg items={players}></ErrorMsg>
+             
              <Players items={players}></Players>
 
        </div>

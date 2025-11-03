@@ -6,7 +6,7 @@ let LivPlayers = ({items}) => {
       return (
 
 
-         <div className="row">
+         <div className="row mt-5">
                <div className="col-lg-12 col-md-12 col-sm-12">
                     <ul className="list-group">
                       {items.map(player => 
